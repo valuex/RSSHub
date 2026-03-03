@@ -1,4 +1,5 @@
-import { Route } from '@/types';
+import type { Route } from '@/types';
+
 import { processFeed } from './utils';
 
 const handler = (ctx) => processFeed('channel', ctx);
@@ -19,10 +20,10 @@ export const route: Route = {
     ],
     handler,
     example: '/theinitium/channel/latest/zh-hans',
-    categories: ['new-media', 'popular'],
+    categories: ['new-media'],
     description: `Type 栏目：
 
-  | 最新   | 深度    | What’s New | 广场              | 科技       | 风物    | 特约     | ... |
-  | ------ | ------- | ---------- | ----------------- | ---------- | ------- | -------- | --- |
-  | latest | feature | news-brief | notes-and-letters | technology | culture | pick_up | ... |`,
+| 最新   | 深度    | What’s New | 广场              | 科技       | 风物    | 特约     | ... |
+| ------ | ------- | ---------- | ----------------- | ---------- | ------- | -------- | --- |
+| latest | feature | news-brief | notes-and-letters | technology | culture | pick_up | ... |`,
 };

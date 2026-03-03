@@ -1,9 +1,10 @@
-import { DataItem, Route } from '@/types';
-import got from '@/utils/got';
 import { config } from '@/config';
-import { parseDate } from '@/utils/parse-date';
-import cache from '@/utils/cache';
 import ConfigNotFoundError from '@/errors/types/config-not-found';
+import type { DataItem, Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
+
 const rootUrl = 'https://xueqiu.com';
 export const route: Route = {
     path: '/timeline/:usergroup_id?',
@@ -30,9 +31,9 @@ export const route: Route = {
   用户关注动态需要登录后的 Cookie 值，所以只能自建，详情见部署页面的配置模块。
 :::
 
-  | -1   | -2       | 1             |
-  | ---- | -------- | ------------- |
-  | 全部 | 关注精选 | 自定义第 1 组 |`,
+| -1   | -2       | 1             |
+| ---- | -------- | ------------- |
+| 全部 | 关注精选 | 自定义第 1 组 |`,
 };
 
 async function handler(ctx) {

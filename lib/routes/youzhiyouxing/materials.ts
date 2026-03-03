@@ -1,12 +1,14 @@
-import { Route, ViewType } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import { ViewType } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/materials/:id?',
-    categories: ['finance', 'popular'],
+    categories: ['finance'],
     view: ViewType.Articles,
     example: '/youzhiyouxing/materials',
     parameters: {
@@ -43,8 +45,8 @@ export const route: Route = {
     handler,
     url: 'youzhiyouxing.cn/materials',
     description: `| 全部 | 知行小酒馆 | 知行黑板报 | 无人知晓 | 孟岩专栏 | 知行读书会 | 你好，同路人 |
-  | :--: | :--------: | :--------: | :------: | :------: | :--------: | :----------: |
-  |   0  |      4     |      2     |    10    |     1    |      3     |      11      |`,
+| :--: | :--------: | :--------: | :------: | :------: | :--------: | :----------: |
+|   0  |      4     |      2     |    10    |     1    |      3     |      11      |`,
 };
 
 async function handler(ctx) {

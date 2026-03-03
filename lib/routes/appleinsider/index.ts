@@ -1,12 +1,13 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/:category?',
-    categories: ['new-media', 'popular'],
+    categories: ['new-media'],
     example: '/appleinsider',
     parameters: { category: 'Category, see below, News by default' },
     features: {
@@ -27,8 +28,8 @@ export const route: Route = {
     maintainers: ['nczitzk'],
     handler,
     description: `| News | Reviews | How-tos |
-  | ---- | ------- | ------- |
-  |      | reviews | how-to  |`,
+| ---- | ------- | ------- |
+|      | reviews | how-to  |`,
 };
 
 async function handler(ctx) {

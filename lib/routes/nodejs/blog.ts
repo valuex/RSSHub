@@ -1,7 +1,8 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
@@ -27,21 +28,21 @@ export const route: Route = {
     handler,
     description: `Official RSS Source: https://nodejs.org/en/feed/blog.xml
 
-  | العربية | Catalan | Deutsch | Español | زبان فارسی |
-  | ------- | ------- | ------- | ------- | ---------- |
-  | ar      | ca      | de      | es      | fa         |
+| العربية | Catalan | Deutsch | Español | زبان فارسی |
+| ------- | ------- | ------- | ------- | ---------- |
+| ar      | ca      | de      | es      | fa         |
 
-  | Français | Galego | Italiano | 日本語 | 한국어 |
-  | -------- | ------ | -------- | ------ | ------ |
-  | fr       | gl     | it       | ja     | ko     |
+| Français | Galego | Italiano | 日本語 | 한국어 |
+| -------- | ------ | -------- | ------ | ------ |
+| fr       | gl     | it       | ja     | ko     |
 
-  | Português do Brasil | limba română | Русский | Türkçe | Українська |
-  | ------------------- | ------------ | ------- | ------ | ---------- |
-  | pt-br               | ro           | ru      | tr     | uk         |
+| Português do Brasil | limba română | Русский | Türkçe | Українська |
+| ------------------- | ------------ | ------- | ------ | ---------- |
+| pt-br               | ro           | ru      | tr     | uk         |
 
-  | 简体中文 | 繁體中文 |
-  | -------- | -------- |
-  | zh-cn    | zh-tw    |`,
+| 简体中文 | 繁體中文 |
+| -------- | -------- |
+| zh-cn    | zh-tw    |`,
 };
 
 async function handler(ctx) {

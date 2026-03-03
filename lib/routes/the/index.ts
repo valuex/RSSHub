@@ -1,15 +1,12 @@
-import { Route } from '@/types';
-import { getCurrentPath } from '@/utils/helpers';
-const __dirname = getCurrentPath(import.meta.url);
-
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import { parseDate } from '@/utils/parse-date';
-import { art } from '@/utils/render';
-import path from 'node:path';
 
-import { apiSlug, bakeFilterSearchParams, bakeFiltersWithPair, bakeUrl, fetchData, getFilterParamsForUrl, parseFilterStr } from './util';
+import type { Route } from '@/types';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
 import timezone from '@/utils/timezone';
+
+import { renderDescription } from './templates/description';
+import { apiSlug, bakeFilterSearchParams, bakeFiltersWithPair, bakeUrl, fetchData, getFilterParamsForUrl, parseFilterStr } from './util';
 
 export const handler = async (ctx) => {
     const { filter } = ctx.req.param();
@@ -47,7 +44,7 @@ export const handler = async (ctx) => {
             const imgEl = el.find('img');
 
             el.replaceWith(
-                art(path.join(__dirname, 'templates/description.art'), {
+                renderDescription({
                     images: imgEl
                         ? [
                               {
@@ -66,7 +63,7 @@ export const handler = async (ctx) => {
 
         $$('h1').parent().remove();
 
-        const description = art(path.join(__dirname, 'templates/description.art'), {
+        const description = renderDescription({
             images: image
                 ? [
                       {
@@ -121,19 +118,19 @@ export const route: Route = {
   你还可以搜索关键字。\`/search/中国\` 搜索关键字 [中国](https://the.bi/s/?s=中国)。在这种情况下，路径是 [\`/the/search/中国\`](https://rsshub.app/the/search/中国).
 :::
 
-  | 分类                                           | ID                                                               |
-  | ---------------------------------------------- | ---------------------------------------------------------------- |
-  | [时局图](https://the.bi/s/rawj7o4ypewv94)      | [rawj7o4ypewv94](https://rsshub.app/the/category/rawj7o4ypewv94) |
-  | [剩余价值](https://the.bi/s/rawmw7dsta2jew)    | [rawmw7dsta2jew](https://rsshub.app/the/category/rawmw7dsta2jew) |
-  | [打江山](https://the.bi/s/rawbcvxkktdkq8)      | [rawbcvxkktdkq8](https://rsshub.app/the/category/rawbcvxkktdkq8) |
-  | [中国经济](https://the.bi/s/raw4krvx85dh27)    | [raw4krvx85dh27](https://rsshub.app/the/category/raw4krvx85dh27) |
-  | [水深火热](https://the.bi/s/rawtn8jpsc6uvv)    | [rawtn8jpsc6uvv](https://rsshub.app/the/category/rawtn8jpsc6uvv) |
-  | [东升西降](https://the.bi/s/rawai5kd4z15il)    | [rawai5kd4z15il](https://rsshub.app/the/category/rawai5kd4z15il) |
-  | [大局 & 大棋](https://the.bi/s/raw2efkzejrsx8) | [raw2efkzejrsx8](https://rsshub.app/the/category/raw2efkzejrsx8) |
-  | [境外势力](https://the.bi/s/rawmpalhnlphuc)    | [rawmpalhnlphuc](https://rsshub.app/the/category/rawmpalhnlphuc) |
-  | [副刊](https://the.bi/s/rawxght2jr2u5z)        | [rawxght2jr2u5z](https://rsshub.app/the/category/rawxght2jr2u5z) |
-  | [天高地厚](https://the.bi/s/rawrsnh9zakqdx)    | [rawrsnh9zakqdx](https://rsshub.app/the/category/rawrsnh9zakqdx) |
-  | [Oyster](https://the.bi/s/rawdhl9hugdfn9)      | [rawdhl9hugdfn9](https://rsshub.app/the/category/rawdhl9hugdfn9) |
+| 分类                                           | ID                                                               |
+| ---------------------------------------------- | ---------------------------------------------------------------- |
+| [时局图](https://the.bi/s/rawj7o4ypewv94)      | [rawj7o4ypewv94](https://rsshub.app/the/category/rawj7o4ypewv94) |
+| [剩余价值](https://the.bi/s/rawmw7dsta2jew)    | [rawmw7dsta2jew](https://rsshub.app/the/category/rawmw7dsta2jew) |
+| [打江山](https://the.bi/s/rawbcvxkktdkq8)      | [rawbcvxkktdkq8](https://rsshub.app/the/category/rawbcvxkktdkq8) |
+| [中国经济](https://the.bi/s/raw4krvx85dh27)    | [raw4krvx85dh27](https://rsshub.app/the/category/raw4krvx85dh27) |
+| [水深火热](https://the.bi/s/rawtn8jpsc6uvv)    | [rawtn8jpsc6uvv](https://rsshub.app/the/category/rawtn8jpsc6uvv) |
+| [东升西降](https://the.bi/s/rawai5kd4z15il)    | [rawai5kd4z15il](https://rsshub.app/the/category/rawai5kd4z15il) |
+| [大局 & 大棋](https://the.bi/s/raw2efkzejrsx8) | [raw2efkzejrsx8](https://rsshub.app/the/category/raw2efkzejrsx8) |
+| [境外势力](https://the.bi/s/rawmpalhnlphuc)    | [rawmpalhnlphuc](https://rsshub.app/the/category/rawmpalhnlphuc) |
+| [副刊](https://the.bi/s/rawxght2jr2u5z)        | [rawxght2jr2u5z](https://rsshub.app/the/category/rawxght2jr2u5z) |
+| [天高地厚](https://the.bi/s/rawrsnh9zakqdx)    | [rawrsnh9zakqdx](https://rsshub.app/the/category/rawrsnh9zakqdx) |
+| [Oyster](https://the.bi/s/rawdhl9hugdfn9)      | [rawdhl9hugdfn9](https://rsshub.app/the/category/rawdhl9hugdfn9) |
   `,
     categories: ['new-media'],
 

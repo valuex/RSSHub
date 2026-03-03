@@ -1,11 +1,12 @@
-import { Route } from '@/types';
-import { getSubPath } from '@/utils/common-utils';
-import cache from '@/utils/cache';
-import got from '@/utils/got';
 import { load } from 'cheerio';
+
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import { getSubPath } from '@/utils/common-utils';
+import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
 
-import { rootUrl, ProcessItem } from './utils';
+import { ProcessItem, rootUrl } from './utils';
 
 const shortcuts = {
     '/information': '/information/web_news',
@@ -18,7 +19,7 @@ const shortcuts = {
 
 export const route: Route = {
     path: '/:category/:subCategory?/:keyword?',
-    categories: ['new-media', 'popular'],
+    categories: ['new-media'],
     example: '/36kr/newsflashes',
     parameters: {
         category: '分类，必填项',
@@ -28,8 +29,8 @@ export const route: Route = {
     name: '资讯, 快讯, 用户文章, 主题文章, 专题文章, 搜索文章, 搜索快讯',
     maintainers: ['nczitzk', 'fashioncj'],
     description: `| 最新资讯频道 | 快讯 | 推荐资讯 | 生活 | 房产 | 职场 | 搜索文章 | 搜索快讯 |
-  | ------- | -------- | -------- | -------- | -------- | --------| -------- | -------- |
-  | news | newsflashes | recommend | life | estate | workplace | search/articles/关键词 | search/articles/关键词 |`,
+| ------- | -------- | -------- | -------- | -------- | --------| -------- | -------- |
+| news | newsflashes | recommend | life | estate | workplace | search/articles/关键词 | search/articles/关键词 |`,
     handler,
 };
 

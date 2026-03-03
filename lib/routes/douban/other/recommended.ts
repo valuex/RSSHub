@@ -1,11 +1,8 @@
-import { Route } from '@/types';
-import { getCurrentPath } from '@/utils/helpers';
-const __dirname = getCurrentPath(import.meta.url);
-
+import type { Route } from '@/types';
 import got from '@/utils/got';
-import path from 'node:path';
-import { art } from '@/utils/render';
 import { fallback, queryToInteger } from '@/utils/readable-social';
+
+import { renderListDescription } from '../templates/list-description';
 
 export const route: Route = {
     path: '/recommended/:type?/:routeParams?',
@@ -24,9 +21,9 @@ export const route: Route = {
     maintainers: ['honue'],
     handler,
     description: `| 额外参数 | 含义                   | 接受的值 | 默认值 |
-  | -------- | ---------------------- | -------- | ------ |
-  | playable | 仅看有可播放片源的影片 | 0/1      | 0      |
-  | score    | 筛选评分               | 0-10     | 0      |
+| -------- | ---------------------- | -------- | ------ |
+| playable | 仅看有可播放片源的影片 | 0/1      | 0      |
+| score    | 筛选评分               | 0-10     | 0      |
 
   用例：\`/douban/recommended/tv/playable=0&score=8\`
 
@@ -78,7 +75,7 @@ async function handler(ctx) {
         .map((item) => {
             const title = item.title;
             const link = item.url;
-            const description = art(path.join(__dirname, '../templates/list_description.art'), {
+            const description = renderListDescription({
                 ranking_value: item.ranking_value,
                 title,
                 original_title: item.original_title,

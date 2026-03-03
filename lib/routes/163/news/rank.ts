@@ -1,10 +1,11 @@
-import { Route } from '@/types';
-import cache from '@/utils/cache';
-import got from '@/utils/got';
 import { load } from 'cheerio';
 import iconv from 'iconv-lite';
-import { parseDate } from '@/utils/parse-date';
+
 import InvalidParameterError from '@/errors/types/invalid-parameter';
+import type { Route } from '@/types';
+import cache from '@/utils/cache';
+import got from '@/utils/got';
+import { parseDate } from '@/utils/parse-date';
 
 const rootUrl = 'https://news.163.com';
 
@@ -108,9 +109,9 @@ export const route: Route = {
 
   新闻分类：
 
-  | 全站  | 新闻 | 娱乐          | 体育   | 财经  | 科技 | 汽车 | 女人 | 房产  | 游戏 | 旅游   | 教育 |
-  | ----- | ---- | ------------- | ------ | ----- | ---- | ---- | ---- | ----- | ---- | ------ | ---- |
-  | whole | news | entertainment | sports | money | tech | auto | lady | house | game | travel | edu  |`,
+| 全站  | 新闻 | 娱乐          | 体育   | 财经  | 科技 | 汽车 | 女人 | 房产  | 游戏 | 旅游   | 教育 |
+| ----- | ---- | ------------- | ------ | ----- | ---- | ---- | ---- | ----- | ---- | ------ | ---- |
+| whole | news | entertainment | sports | money | tech | auto | lady | house | game | travel | edu  |`,
 };
 
 async function handler(ctx) {

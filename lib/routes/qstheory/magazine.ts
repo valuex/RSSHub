@@ -1,8 +1,9 @@
-import { Route } from '@/types';
-
-import ofetch from '@/utils/ofetch';
 import * as cheerio from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
+import ofetch from '@/utils/ofetch';
+
 import { baseUrl, getItem } from './utils';
 
 export const route: Route = {
@@ -16,7 +17,7 @@ export const route: Route = {
         },
     ],
     name: '在线读刊',
-    maintainers: ['TonyRL'],
+    maintainers: ['TonyRL', 'cscnk52'],
     handler,
 };
 
@@ -34,14 +35,14 @@ async function handler(ctx) {
             const $item = $(item);
             return {
                 title: $item.text(),
-                link: $item.attr('href')!,
+                link: new URL($item.attr('href')!, baseUrl).href,
             };
         });
 
     const issueResponse = await ofetch(yearList[0].link);
     const $$ = cheerio.load(issueResponse);
 
-    const list = $$('.highlight span a')
+    const list = $$('.highlight a')
         .toArray()
         .map((item) => {
             const $item = $$(item);

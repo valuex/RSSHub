@@ -1,12 +1,13 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import ofetch from '@/utils/ofetch';
-import { load } from 'cheerio';
 import { parseDate } from '@/utils/parse-date';
 
 export const route: Route = {
     path: '/topic/:topic?/:type?',
-    categories: ['new-media', 'popular'],
+    categories: ['new-media'],
     example: '/hbr/topic/Leadership/Popular',
     parameters: {
         topic: 'Topic, can be found in URL, Leadership by default',
@@ -37,8 +38,8 @@ export const route: Route = {
     maintainers: ['nczitzk', 'pseudoyu'],
     handler,
     description: `| POPULAR | FROM THE STORE | FOR YOU |
-  | ------- | -------------- | ------- |
-  | Popular | From the Store | For You |
+| ------- | -------------- | ------- |
+| Popular | From the Store | For You |
 
 ::: tip
   Click here to view [All Topics](https://hbr.org/topics)
@@ -58,7 +59,8 @@ async function handler(ctx) {
 
     const list = $(`stream-content[data-stream-name="${type}"]`)
         .find('.stream-item')
-        .map((_, item) => {
+        .toArray()
+        .map((item) => {
             item = $(item);
 
             return {
@@ -67,8 +69,7 @@ async function handler(ctx) {
                 category: item.attr('data-topic'),
                 link: `${rootUrl}${item.attr('data-url')}`,
             };
-        })
-        .get();
+        });
 
     const items = await Promise.all(
         list.map((item) =>

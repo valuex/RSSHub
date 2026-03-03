@@ -1,8 +1,9 @@
-import { DataItem, Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { DataItem, Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
 import { parseDate } from '@/utils/parse-date';
-import { load } from 'cheerio';
 
 type NewsCategory = {
     title: string;
@@ -24,8 +25,8 @@ const NEWS_TYPES: Record<string, NewsCategory> = {
     },
 };
 
-const handler: Route['handler'] = async (context) => {
-    const category = context.req.param('category');
+const handler: Route['handler'] = async (ctx) => {
+    const category = ctx.req.param('category');
 
     const BASE_URL = `https://www.catticenter.com/${category}`;
 

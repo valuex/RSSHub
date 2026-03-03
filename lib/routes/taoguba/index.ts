@@ -1,7 +1,9 @@
-import { Route } from '@/types';
-import got from '@/utils/got';
 import { load } from 'cheerio';
-import { rootUrl, renderPostDetail } from './util';
+
+import type { Route } from '@/types';
+import got from '@/utils/got';
+
+import { renderPostDetail, rootUrl } from './util';
 
 export const route: Route = {
     path: '/:category?',
@@ -12,8 +14,8 @@ export const route: Route = {
     maintainers: ['nczitzk'],
     handler,
     description: `| 淘股论坛 | 社区总版 | 精华加油 | 网友点赞 |
-  | -------- | -------- | -------- | -------- |
-  | bbs      | zongban  | jinghua  | dianzan  |`,
+| -------- | -------- | -------- | -------- |
+| bbs      | zongban  | jinghua  | dianzan  |`,
 };
 
 async function handler(ctx) {

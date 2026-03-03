@@ -1,9 +1,10 @@
-import { Route } from '@/types';
+import { load } from 'cheerio';
+
+import type { Route } from '@/types';
 import cache from '@/utils/cache';
 import got from '@/utils/got';
-import { load } from 'cheerio';
-import timezone from '@/utils/timezone';
 import { parseDate, parseRelativeDate } from '@/utils/parse-date';
+import timezone from '@/utils/timezone';
 
 const config = {
     review: {
@@ -58,8 +59,8 @@ export const route: Route = {
     handler,
     url: 'guancha.cn/',
     description: `| 全部 | 评论 & 研究 | 要闻  | 风闻    | 热点新闻 | 滚动新闻 |
-  | ---- | ----------- | ----- | ------- | -------- | -------- |
-  | all  | review      | story | fengwen | redian   | gundong  |
+| ---- | ----------- | ----- | ------- | -------- | -------- |
+| all  | review      | story | fengwen | redian   | gundong  |
 
   home = 评论 & 研究 + 要闻 + 风闻
 
