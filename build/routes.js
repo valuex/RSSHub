@@ -11603,6 +11603,34 @@ export default {
     "url": "www.artstation.com",
     "lang": "en"
   },
+  "aschmelyun": {
+    "routes": {
+      "/blog": {
+        "name": "Blog",
+        "categories": [
+          "blog"
+        ],
+        "maintainers": [
+          "raxod502"
+        ],
+        "path": "/blog",
+        "example": "/aschmelyun/blog",
+        "radar": [
+          {
+            "source": [
+              "aschmelyun.com"
+            ],
+            "target": "/blog"
+          }
+        ],
+        "location": "blog.ts",
+        "module": () => import('@/routes/aschmelyun/blog.ts')
+      }
+    },
+    "name": "Andrew Schmelyun",
+    "apiRoutes": {},
+    "url": "aschmelyun.com"
+  },
   "asiafruitchina": {
     "routes": {
       "/categories/:category?": {
@@ -26842,6 +26870,76 @@ export default {
     },
     "lang": "zh-CN"
   },
+  "claude": {
+    "routes": {
+      "/blog": {
+        "path": "/blog",
+        "categories": [
+          "programming"
+        ],
+        "example": "/claude/blog",
+        "parameters": {},
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "claude.com/blog"
+            ],
+            "target": "/blog"
+          }
+        ],
+        "name": "Blog",
+        "maintainers": [
+          "zhenlohuang"
+        ],
+        "url": "claude.com/blog",
+        "location": "blog.ts",
+        "module": () => import('@/routes/claude/blog.ts')
+      },
+      "/code/changelog": {
+        "path": "/code/changelog",
+        "name": "Code Changelog",
+        "url": "code.claude.com",
+        "maintainers": [
+          "rmaced0"
+        ],
+        "example": "/claude/code/changelog",
+        "categories": [
+          "program-update"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "code.claude.com/docs/en/changelog"
+            ],
+            "target": "/code/changelog"
+          }
+        ],
+        "location": "code-changelog.ts",
+        "module": () => import('@/routes/claude/code-changelog.ts')
+      }
+    },
+    "name": "Claude",
+    "apiRoutes": {},
+    "url": "claude.com",
+    "lang": "en"
+  },
   "clickme": {
     "routes": {
       "/:site/:grouping/:name": {
@@ -29297,6 +29395,46 @@ export default {
     "name": "COMIC FUZ",
     "apiRoutes": {},
     "url": "comic-fuz.com",
+    "lang": "ja"
+  },
+  "comic-walker": {
+    "routes": {
+      "/manga/:id": {
+        "path": "/manga/:id",
+        "categories": [
+          "anime"
+        ],
+        "example": "/comic-walker/manga/KC_006778_S",
+        "parameters": {
+          "id": "カドコミ(Kadocomi)中对应的作品workCode，例如 KC_006778_S"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "comic-walker.com/detail/:id"
+            ],
+            "target": "/manga/:id"
+          }
+        ],
+        "name": "漫画详情",
+        "maintainers": [
+          "xiaobailoves"
+        ],
+        "location": "manga.ts",
+        "module": () => import('@/routes/comic-walker/manga.ts')
+      }
+    },
+    "name": "カドコミ(Kadocomi)",
+    "apiRoutes": {},
+    "url": "comic-walker.com",
     "lang": "ja"
   },
   "comicat": {
@@ -46374,6 +46512,31 @@ export default {
         "description": "|pc|tv|indie|web|mobile|all|\n|---|---|---|---|---|---|\n|单机|电视|独立游戏|网游|手游|全部评测|\n",
         "location": "review.ts",
         "module": () => import('@/routes/gamersky/review.ts')
+      },
+      "/user/:userId/:detail?": {
+        "path": "/user/:userId/:detail?",
+        "categories": [
+          "game"
+        ],
+        "example": "/gamersky/user/4009731/detail",
+        "parameters": {
+          "userId": "用户 ID。在用户个人主页，打开“开发者工具”中的“元素”标签页，搜索 data-userid 即可找到",
+          "detail": "是否获取文章详情。只要该参数不为空，就会获取全文内容"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "用户动态",
+        "maintainers": [
+          "hualiong"
+        ],
+        "location": "user.ts",
+        "module": () => import('@/routes/gamersky/user.ts')
       }
     },
     "name": "GamerSky",
@@ -47152,6 +47315,83 @@ export default {
         "view": 1,
         "location": "topics.ts",
         "module": () => import('@/routes/gcores/topics.ts')
+      },
+      "/users/:id/radios": {
+        "path": "/users/:id/radios",
+        "name": "用户播客",
+        "url": "www.gcores.com",
+        "maintainers": [
+          "DzmingLi"
+        ],
+        "example": "/gcores/users/31418/radios",
+        "parameters": {
+          "id": {
+            "description": "用户 ID，可在用户主页 URL 中找到"
+          }
+        },
+        "description": "::: tip\n若订阅用户 [这样重这样轻](https://www.gcores.com/users/31418) 发布的播客，网址为 `https://www.gcores.com/users/31418`，请截取 `https://www.gcores.com/users/` 之后的部分 `31418` 作为 `id` 参数填入，此时目标路由为 [`/gcores/users/31418/radios`](https://rsshub.app/gcores/users/31418/radios)。\n:::\n",
+        "categories": [
+          "game"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": true,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.gcores.com/users/:id/content",
+              "www.gcores.com/users/:id"
+            ],
+            "target": "/users/:id/radios"
+          }
+        ],
+        "view": 4,
+        "location": "user-radios.ts",
+        "module": () => import('@/routes/gcores/user-radios.ts')
+      },
+      "/users/:id/talks": {
+        "path": "/users/:id/talks",
+        "name": "用户动态",
+        "url": "www.gcores.com",
+        "maintainers": [
+          "DzmingLi"
+        ],
+        "example": "/gcores/users/31418/talks",
+        "parameters": {
+          "id": {
+            "description": "用户 ID，可在用户主页 URL 中找到"
+          }
+        },
+        "description": "::: tip\n若订阅用户 [这样重这样轻](https://www.gcores.com/users/31418/talks) 的动态，网址为 `https://www.gcores.com/users/31418/talks`，请截取 `https://www.gcores.com/users/` 到 `/talks` 之间的部分 `31418` 作为 `id` 参数填入，此时目标路由为 [`/gcores/users/31418/talks`](https://rsshub.app/gcores/users/31418/talks)。\n:::\n",
+        "categories": [
+          "game"
+        ],
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportRadar": true,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "www.gcores.com/users/:id/talks"
+            ],
+            "target": "/users/:id/talks"
+          }
+        ],
+        "view": 1,
+        "location": "user-talks.ts",
+        "module": () => import('@/routes/gcores/user-talks.ts')
       },
       "/videos": {
         "path": "/videos",
@@ -80997,6 +81237,42 @@ export default {
       "name": "美露可利"
     }
   },
+  "meritalk": {
+    "routes": {
+      "/articles": {
+        "path": "/articles",
+        "categories": [
+          "new-media"
+        ],
+        "example": "/meritalk/articles",
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "meritalk.com/articles/"
+            ],
+            "target": "/articles"
+          }
+        ],
+        "name": "Latest Articles",
+        "maintainers": [
+          "superguyDiluc"
+        ],
+        "location": "articles.ts",
+        "module": () => import('@/routes/meritalk/articles.ts')
+      }
+    },
+    "name": "MeriTalk",
+    "apiRoutes": {},
+    "url": "meritalk.com"
+  },
   "meta": {
     "routes": {
       "/ai/blog": {
@@ -82674,6 +82950,7 @@ export default {
         "path": "/news",
         "example": "/miyuki/news",
         "name": "News",
+        "url": "www.miyuki.jp/s/y10/news/list",
         "categories": [
           "new-media"
         ],
@@ -85353,16 +85630,17 @@ export default {
         "radar": [
           {
             "source": [
-              "jwc.ncu.edu.cn/",
-              "jwc.ncu.edu.cn/jwtz/index.htm"
-            ]
+              "jwc.ncu.edu.cn"
+            ],
+            "target": "/jwc"
           }
         ],
         "name": "教务通知",
         "maintainers": [
-          "ywh555hhh"
+          "ywh555hhh",
+          "jixiuweilan"
         ],
-        "url": "jwc.ncu.edu.cn/",
+        "url": "jwc.ncu.edu.cn/Notices.jsp",
         "location": "jwc.ts",
         "module": () => import('@/routes/ncu/jwc.ts')
       }
@@ -92403,7 +92681,8 @@ export default {
         },
         "name": "Research",
         "maintainers": [
-          "yuguorui"
+          "yuguorui",
+          "chesha1"
         ],
         "location": "research.ts",
         "module": () => import('@/routes/openai/research.ts')
@@ -96937,8 +97216,8 @@ export default {
         },
         "features": {
           "requireConfig": false,
-          "requirePuppeteer": true,
-          "antiCrawler": true,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
           "supportBT": false,
           "supportPodcast": false,
           "supportScihub": false
@@ -98907,15 +99186,16 @@ export default {
   },
   "pornhub": {
     "routes": {
-      "/category_url/:url?/:language?": {
-        "path": "/category_url/:url?/:language?",
+      "/category_url/:url?/:language?/:img?": {
+        "path": "/category_url/:url?/:language?/:img?",
         "categories": [
           "multimedia"
         ],
         "example": "/pornhub/category_url/video%3Fc%3D15%26o%3Dmv%26t%3Dw%26cc%3Djp",
         "parameters": {
-          "language": "language, see below",
-          "url": "relative path after `pornhub.com/`, need to be URL encoded"
+          "language": "language, see below. defaults to `www` (English)",
+          "url": "relative path after `pornhub.com/`, need to be URL encoded",
+          "img": "show images, set to `img=1` to enable"
         },
         "features": {
           "requireConfig": false,
@@ -98935,15 +99215,16 @@ export default {
         "location": "category-url.ts",
         "module": () => import('@/routes/pornhub/category-url.ts')
       },
-      "/category/:caty": {
-        "path": "/category/:caty",
+      "/category/:caty/:img?": {
+        "path": "/category/:caty/:img?",
         "categories": [
           "multimedia"
         ],
         "view": 3,
         "example": "/pornhub/category/popular-with-women",
         "parameters": {
-          "caty": "category, see [categories](https://www.pornhub.com/webmasters/categories)"
+          "caty": "category, see [categories](https://www.pornhub.com/webmasters/categories)",
+          "img": "show images, set to `img=1` to enable"
         },
         "features": {
           "requireConfig": false,
@@ -98961,17 +99242,18 @@ export default {
         "location": "category.ts",
         "module": () => import('@/routes/pornhub/category.ts')
       },
-      "/model/:username/:language?/:sort?": {
-        "path": "/model/:username/:language?/:sort?",
+      "/model/:username/:language?/:sort?/:img?": {
+        "path": "/model/:username/:language?/:sort?/:img?",
         "categories": [
           "multimedia"
         ],
         "view": 3,
         "example": "/pornhub/model/stacy-starando",
         "parameters": {
-          "language": "language, see below",
+          "language": "language, see below. defaults to www",
           "username": "username, part of the url e.g. `pornhub.com/model/stacy-starando`",
-          "sort": "sorting method, see below"
+          "sort": "sorting method, see below. Defaults to mr (most recent)",
+          "img": "show images, set to `img=1` to enable"
         },
         "features": {
           "requireConfig": false,
@@ -99076,8 +99358,8 @@ export default {
         "location": "model.ts",
         "module": () => import('@/routes/pornhub/model.ts')
       },
-      "/pornstar/:username/:language?/:sort?": {
-        "path": "/pornstar/:username/:language?/:sort?",
+      "/pornstar/:username/:language?/:sort?/:img?": {
+        "path": "/pornstar/:username/:language?/:sort?/:img?",
         "categories": [
           "multimedia"
         ],
@@ -99088,7 +99370,7 @@ export default {
             "description": "username, part of the url e.g. `pornhub.com/pornstar/june-liu`"
           },
           "language": {
-            "description": "language",
+            "description": "language, defaults to `www` (English)",
             "options": [
               {
                 "value": "www",
@@ -99142,7 +99424,7 @@ export default {
             "default": "www"
           },
           "sort": {
-            "description": "sorting method, leave empty for `Best`",
+            "description": "sorting method, defaults to `mr` (Most Recent)",
             "options": [
               {
                 "label": "Most Recent",
@@ -99161,7 +99443,8 @@ export default {
                 "value": "lg"
               }
             ]
-          }
+          },
+          "img": "show images, set to `img=1` to enable"
         },
         "features": {
           "requireConfig": false,
@@ -99266,15 +99549,16 @@ export default {
         "location": "pornstar.ts",
         "module": () => import('@/routes/pornhub/pornstar.ts')
       },
-      "/search/:keyword": {
-        "path": "/search/:keyword",
+      "/search/:keyword/:img?": {
+        "path": "/search/:keyword/:img?",
         "categories": [
           "multimedia"
         ],
         "view": 3,
         "example": "/pornhub/search/stepsister",
         "parameters": {
-          "keyword": "keyword"
+          "keyword": "keyword",
+          "img": "show images, set to `img=1` to enable"
         },
         "features": {
           "requireConfig": false,
@@ -99292,15 +99576,16 @@ export default {
         "location": "search.ts",
         "module": () => import('@/routes/pornhub/search.ts')
       },
-      "/users/:username/:language?": {
-        "path": "/users/:username/:language?",
+      "/users/:username/:language?/:img?": {
+        "path": "/users/:username/:language?/:img?",
         "categories": [
           "multimedia"
         ],
         "example": "/pornhub/users/pornhubmodels",
         "parameters": {
-          "language": "language, see below",
-          "username": "username, part of the url e.g. `pornhub.com/users/pornhubmodels`"
+          "language": "language, see below. defaults to `www` (English)",
+          "username": "username, part of the url e.g. `pornhub.com/users/pornhubmodels`",
+          "img": "show images, set to `img=1` to enable"
         },
         "features": {
           "requireConfig": false,
@@ -101513,7 +101798,7 @@ export default {
           "supportPodcast": false,
           "supportScihub": false
         },
-        "name": "用户作品评论动态",
+        "name": "全民K歌 - 用户作品评论动态",
         "maintainers": [
           "zhangxiang012"
         ],
@@ -101537,7 +101822,7 @@ export default {
           "supportPodcast": true,
           "supportScihub": false
         },
-        "name": "用户作品列表",
+        "name": "全民K歌 - 用户作品列表",
         "maintainers": [
           "zhangxiang012"
         ],
@@ -101608,6 +101893,39 @@ export default {
         "view": 0,
         "location": "lol/news.ts",
         "module": () => import('@/routes/qq/lol/news.ts')
+      },
+      "/news/:uid/:detail?": {
+        "path": "/news/:uid/:detail?",
+        "categories": [
+          "social-media"
+        ],
+        "example": "/qq/news/8QMZ2X5a5YUeujw=",
+        "parameters": {
+          "uid": "用户 ID, 用户主页 URL 中的最后一段部分",
+          "detail": "是否抓取全文，该值只要不为空就抓取全文返回，否则只返回摘要"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": true,
+          "supportScihub": false
+        },
+        "radar": [
+          {
+            "source": [
+              "news.qq.com/omn/author/:uid"
+            ],
+            "target": "/qq/news/:uid"
+          }
+        ],
+        "name": "用户主页列表",
+        "maintainers": [
+          "hualiong"
+        ],
+        "location": "news/user.ts",
+        "module": () => import('@/routes/qq/news/user.ts')
       },
       "/pd/guild/:id/:sub?/:sort?": {
         "path": [
@@ -106501,6 +106819,31 @@ export default {
         "description": "| 重要通知 | 管理服务 | 创新实践 | \n| -------- | -------- |-------- |\n| zytz     | glfw     | cxsj    | ",
         "location": "ygb.ts",
         "module": () => import('@/routes/sdu/ygb.ts')
+      },
+      "/yz/:type?": {
+        "path": "/yz/:type?",
+        "categories": [
+          "university"
+        ],
+        "example": "/sdu/yz/tzgg",
+        "parameters": {
+          "type": "默认为`tzgg`"
+        },
+        "features": {
+          "requireConfig": false,
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
+        },
+        "name": "研究生招生信息网",
+        "maintainers": [
+          "niuyi1017"
+        ],
+        "description": "| 通知公告 | 招生拓展 | 政策文件 | \n| -------- | -------- |-------- |\n| tzgg     | zstz     | zcwj    | ",
+        "location": "yz.ts",
+        "module": () => import('@/routes/sdu/yz.ts')
       }
     },
     "name": "山东大学",
@@ -120519,12 +120862,27 @@ export default {
       "/author/:type/:language?": {
         "path": "/author/:type/:language?",
         "name": "作者",
+        "url": "theinitium.com",
         "maintainers": [
           "AgFlore"
         ],
         "parameters": {
-          "type": "作者 ID，可从作者主页 URL 中获取，如 `https://theinitium.com/author/ninghuilulu`",
-          "language": "语言，简体`zh-hans`，繁体`zh-hant`，缺省为简体"
+          "type": "作者 slug，可从作者主页 URL 中获取，如 `https://theinitium.com/author/initium-newsroom/`",
+          "language": "语言，简体`zh-hans`，繁体`zh-hant`，缺省为不限"
+        },
+        "features": {
+          "requireConfig": [
+            {
+              "name": "INITIUM_MEMBER_COOKIE",
+              "optional": true,
+              "description": "端传媒会员登录后的 Cookie，用于获取付费文章全文。"
+            }
+          ],
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
         },
         "radar": [
           {
@@ -120534,7 +120892,7 @@ export default {
             "target": "/author/:type"
           }
         ],
-        "example": "/theinitium/author/ninghuilulu/zh-hans",
+        "example": "/theinitium/author/initium-newsroom",
         "categories": [
           "new-media"
         ],
@@ -120543,95 +120901,104 @@ export default {
       },
       "/channel/:type?/:language?": {
         "path": "/channel/:type?/:language?",
-        "name": "专题・栏目",
+        "name": "栏目",
+        "url": "theinitium.com",
         "maintainers": [
           "prnake",
           "mintyfrankie"
         ],
         "parameters": {
-          "type": "栏目，缺省为最新",
-          "language": "语言，简体`zh-hans`，繁体`zh-hant`，缺省为简体"
+          "type": "栏目，缺省为最新（latest）",
+          "language": "语言，简体`zh-hans`，繁体`zh-hant`，缺省为不限"
+        },
+        "features": {
+          "requireConfig": [
+            {
+              "name": "INITIUM_MEMBER_COOKIE",
+              "optional": true,
+              "description": "端传媒会员登录后的 Cookie，用于获取付费文章全文。获取方式：登录 theinitium.com 后，从浏览器开发者工具中复制 Cookie。"
+            }
+          ],
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
         },
         "radar": [
           {
             "source": [
-              "theinitium.com/channel/:type"
+              "theinitium.com/latest/"
+            ],
+            "target": "/channel/latest"
+          },
+          {
+            "source": [
+              "theinitium.com/tag/:type"
             ],
             "target": "/channel/:type"
           }
         ],
-        "example": "/theinitium/channel/latest/zh-hans",
+        "example": "/theinitium/channel/latest",
         "categories": [
           "new-media"
         ],
-        "description": "Type 栏目：\n\n| 最新   | 深度    | What’s New | 广场              | 科技       | 风物    | 特约     | ... |\n| ------ | ------- | ---------- | ----------------- | ---------- | ------- | -------- | --- |\n| latest | feature | news-brief | notes-and-letters | technology | culture | pick_up | ... |",
+        "description": "Type 栏目（对应 Ghost 标签）：\n\n| 最新   | 速递     | 评论    | 国际          | 大陆     | 香港     | 台湾   | 科技       | 专题   | 日报        | 周报   |\n| ------ | -------- | ------- | ------------- | -------- | -------- | ------ | ---------- | ------ | ----------- | ------ |\n| latest | whatsnew | opinion | international | mainland | hongkong | taiwan | technology | feature | daily-brief | weekly |\n\n:::tip\n设置环境变量 `INITIUM_MEMBER_COOKIE` 可获取付费文章全文。\n:::",
         "location": "channel.ts",
         "module": () => import('@/routes/theinitium/channel.ts')
       },
       "/follow/articles/:language?": {
         "path": "/follow/articles/:language?",
-        "name": "个人订阅追踪动态",
+        "name": "个人订阅追踪动态（已停用）",
         "maintainers": [
           "AgFlore"
         ],
         "parameters": {
-          "language": "语言，简体`zh-hans`，繁体`zh-hant`，缺省为简体"
+          "language": "语言"
         },
-        "radar": [
-          {
-            "title": "作者",
-            "source": [
-              "theinitium.com/author/:type"
-            ],
-            "target": "/author/:type"
-          }
-        ],
-        "example": "/theinitium/author/ninghuilulu/zh-hans",
+        "radar": [],
+        "example": "/theinitium/follow/articles",
         "categories": [
           "new-media"
         ],
-        "description": "需填入 Web 版认证 token, 也可选择直接在环境设置中填写明文的用户名和密码",
-        "features": {
-          "requireConfig": [
-            {
-              "name": "INITIUM_BEARER_TOKEN",
-              "optional": true,
-              "description": "端传媒 Web 版认证 token。获取方式：登陆后打开端传媒站内任意页面，打开浏览器开发者工具中 “网络”(Network) 选项卡，筛选 URL 找到任一个地址为 `api.initium.com` 开头的请求，点击检查其 “消息头”，在 “请求头” 中找到Authorization字段，将其值复制填入配置即可。你的配置应该形如 `INITIUM_BEARER_TOKEN: 'Bearer eyJxxxx......xx_U8'`。使用 token 部署的好处是避免占据登陆设备数的额度，但这个 token 一般有效期为两周，因此只可作临时测试使用。"
-            },
-            {
-              "name": "INITIUM_USERNAME",
-              "optional": true,
-              "description": "端传媒用户名 （邮箱）"
-            },
-            {
-              "name": "INITIUM_PASSWORD",
-              "optional": true,
-              "description": "端传媒密码"
-            }
-          ]
-        },
+        "description": ":::warning\n此路由已停用。端传媒已迁移到 Ghost CMS，不再支持通过 API 获取个人追踪内容。请改用标签或栏目订阅。\n:::",
         "location": "follow.ts",
         "module": () => import('@/routes/theinitium/follow.ts')
       },
       "/tags/:type/:language?": {
         "path": "/tags/:type/:language?",
         "name": "话题・标签",
+        "url": "theinitium.com",
         "maintainers": [
           "AgFlore"
         ],
         "parameters": {
-          "type": "话题 ID，可从话题页 URL 中获取，如 `https://theinitium.com/tags/2019_10/`",
-          "language": "语言，简体`zh-hans`，繁体`zh-hant`，缺省为简体"
+          "type": "标签 slug，可从标签页 URL 中获取，如 `https://theinitium.com/tag/south-korea/` 则为 `south-korea`",
+          "language": "语言，简体`zh-hans`，繁体`zh-hant`，缺省为不限"
+        },
+        "features": {
+          "requireConfig": [
+            {
+              "name": "INITIUM_MEMBER_COOKIE",
+              "optional": true,
+              "description": "端传媒会员登录后的 Cookie，用于获取付费文章全文。"
+            }
+          ],
+          "requirePuppeteer": false,
+          "antiCrawler": false,
+          "supportBT": false,
+          "supportPodcast": false,
+          "supportScihub": false
         },
         "radar": [
           {
             "source": [
-              "theinitium.com/tags/:type"
+              "theinitium.com/tag/:type"
             ],
             "target": "/tags/:type"
           }
         ],
-        "example": "/theinitium/tags/2019_10/zh-hans",
+        "example": "/theinitium/tags/south-korea",
         "categories": [
           "new-media"
         ],
@@ -120639,11 +121006,14 @@ export default {
         "module": () => import('@/routes/theinitium/tags.ts')
       }
     },
-    "name": "端传媒",
+    "name": "The Initium",
     "apiRoutes": {},
     "url": "theinitium.com",
-    "description": "通过提取文章全文，以提供比官方源更佳的阅读体验。\n\n::: warning\n付费内容全文可能需要登陆获取，详情见部署页面的配置模块。\n:::",
-    "lang": "zh-HK"
+    "description": ":::tip\nSet the environment variable `INITIUM_MEMBER_COOKIE` to get the full text of paid articles. After logging in to theinitium.com, copy the Cookie from the browser developer tools.\n\nOld environment variables `INITIUM_USERNAME`, `INITIUM_PASSWORD`, and `INITIUM_BEARER_TOKEN` are no longer used since the site migrated to Ghost CMS.\n:::",
+    "zh": {
+      "name": "端傳媒",
+      "description": ":::tip\n设置环境变量 `INITIUM_MEMBER_COOKIE` 可获取付费文章全文。登录 theinitium.com 后，从浏览器开发者工具中复制 Cookie。\n\n旧的环境变量 `INITIUM_USERNAME`、`INITIUM_PASSWORD` 和 `INITIUM_BEARER_TOKEN` 已不再使用（网站已迁移至 Ghost CMS）。\n:::"
+    }
   },
   "themoviedb": {
     "routes": {
